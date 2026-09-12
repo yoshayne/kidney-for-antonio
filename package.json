@@ -7,7 +7,9 @@
     "start": "node server.js"
   },
   "dependencies": {
-    "express": "^5.2.1",
-    "nodemailer": "^10.0.9"
+    "express": "^5.2.1"
+  },
+  "engines": {
+    "node": ">=18"
   }
 }

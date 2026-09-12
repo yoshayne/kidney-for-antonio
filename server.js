@@ -1,29 +1,41 @@
 const path = require('path');
 const express = require('express');
-const nodemailer = require('nodemailer');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 const COORDINATOR_EMAIL = process.env.DONOR_COORDINATOR_EMAIL || 'Chesley.bishop@Prismahealth.org';
-const SMTP_HOST = process.env.SMTP_HOST || 'smtp-relay.brevo.com';
-const SMTP_PORT = Number(process.env.SMTP_PORT || 587);
-const SMTP_USER = process.env.SMTP_USER;
-const SMTP_PASSWORD = process.env.SMTP_PASSWORD;
-const FROM_EMAIL = process.env.FROM_EMAIL || SMTP_USER;
+const BREVO_API_KEY = process.env.BREVO_API_KEY;
+const FROM_EMAIL = process.env.FROM_EMAIL || 'Pleasedonate@kidneyforantonio.com';
+const FROM_NAME = process.env.FROM_NAME || 'Kidney For Antonio';
 
-const emailConfigured = Boolean(SMTP_USER && SMTP_PASSWORD);
+const emailConfigured = Boolean(BREVO_API_KEY);
 
-let transporter = null;
-if (emailConfigured) {
-  transporter = nodemailer.createTransport({
-    host: SMTP_HOST,
-    port: SMTP_PORT,
-    secure: SMTP_PORT === 465,
-    auth: { user: SMTP_USER, pass: SMTP_PASSWORD },
+if (!emailConfigured) {
+  console.warn('Email is not configured — set BREVO_API_KEY to enable the donor questionnaire.');
+}
+
+async function sendEmail({ to, subject, html, replyTo }) {
+  const response = await fetch('https://api.brevo.com/v3/smtp/email', {
+    method: 'POST',
+    headers: {
+      accept: 'application/json',
+      'content-type': 'application/json',
+      'api-key': BREVO_API_KEY,
+    },
+    body: JSON.stringify({
+      sender: { name: FROM_NAME, email: FROM_EMAIL },
+      to: [{ email: to }],
+      ...(replyTo ? { replyTo: { email: replyTo } } : {}),
+      subject,
+      htmlContent: html,
+    }),
   });
-} else {
-  console.warn('Email is not configured — set SMTP_USER and SMTP_PASSWORD (your Brevo SMTP login and key) to enable the donor questionnaire.');
+
+  if (!response.ok) {
+    const body = await response.text().catch(() => '');
+    throw new Error(`Brevo API error ${response.status}: ${body}`);
+  }
 }
 
 app.use(express.json({ limit: '256kb' }));
@@ -187,8 +199,7 @@ app.post('/api/donor-questionnaire', async (req, res) => {
 
     const html = buildEmailHtml(data);
 
-    await transporter.sendMail({
-      from: `"Kidney For Antonio Website" <${FROM_EMAIL}>`,
+    await sendEmail({
       to: COORDINATOR_EMAIL,
       replyTo: data.email || undefined,
       subject: `Living Donor Questionnaire — ${data.fullName}`,
@@ -196,8 +207,7 @@ app.post('/api/donor-questionnaire', async (req, res) => {
     });
 
     if (data.email) {
-      await transporter.sendMail({
-        from: `"Kidney For Antonio" <${FROM_EMAIL}>`,
+      await sendEmail({
         to: data.email,
         subject: 'Your Living Donor Questionnaire submission',
         html: `<p>Thank you for completing the Living Donor Questionnaire for Antonio. Your answers were sent directly to Prisma Health's Living Donor Coordinator, who will reach out to you.</p>
