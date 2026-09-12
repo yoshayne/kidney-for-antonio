@@ -163,25 +163,43 @@ a { color: inherit; text-decoration: none; }
 /* ---------- Hero ---------- */
 .hero { background: var(--green-dark); }
 
-/* Desktop: your designed banner image, cropped just above its own button row */
+/* Desktop: the full banner image, with invisible clickable regions over its
+   own baked-in buttons. Positions are percentages of the image's natural size
+   (2172x724), measured from the button pixels themselves, so they stay lined
+   up at any width since the image scales as a block. */
 .hero-banner-desktop { display: block; }
-.hero-banner-crop {
-  width: 100%;
-  aspect-ratio: 2172 / 561;
+.hero-banner-image { position: relative; width: 100%; }
+.hero-banner-image img { width: 100%; height: auto; display: block; }
+
+.hero-hotspot {
+  position: absolute;
+  top: 79.5%;
+  height: 17%;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: box-shadow .15s ease, background-color .15s ease;
+}
+.hero-hotspot:hover,
+.hero-hotspot:focus-visible {
+  background-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.9), 0 0 0 6px rgba(47, 128, 88, 0.55);
+  outline: none;
+}
+.hotspot-donor { left: 7.1%; width: 20.9%; }
+.hotspot-support { left: 30.1%; width: 20.4%; }
+.hotspot-share { left: 53.4%; width: 18.7%; }
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
   overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
-.hero-banner-crop img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top center;
-  display: block;
-}
-.hero-actions-bar {
-  background: var(--green-dark);
-  padding: 28px 0 44px;
-}
-.hero-actions-bar .hero-actions { margin-top: 0; }
 
 /* Mobile: real HTML text over the same photo (legible where the baked-in text would be too small) */
 .hero-banner-mobile {
