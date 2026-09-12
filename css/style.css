@@ -370,9 +370,9 @@ a { color: inherit; text-decoration: none; }
 .support-text { max-width: 700px; }
 .support-cards {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 24px;
-  max-width: 700px;
+  max-width: 980px;
   margin: 40px auto 0;
 }
 .support-card {
@@ -392,6 +392,7 @@ a { color: inherit; text-decoration: none; }
   margin-bottom: 16px;
 }
 .support-icon.paypal { background: #E5EEFB; color: #1A3A8F; }
+.support-icon.gofundme { background: #E3F7EC; color: #00B964; }
 .support-icon.share { background: #F1E6F7; color: #7B2E9C; }
 .support-card h3 { font-size: 18px; }
 .support-card p { font-size: 14px; }
@@ -677,6 +678,7 @@ a { color: inherit; text-decoration: none; }
   .donor-info-grid { grid-template-columns: 1fr; }
   .resource-links { grid-template-columns: 1fr; }
   .story-photos { margin-top: 40px; }
+  .support-cards { grid-template-columns: 1fr 1fr; max-width: 700px; }
 }
 
 @media (max-width: 760px) {
