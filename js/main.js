@@ -41,7 +41,7 @@ async function shareSite() {
   }
 }
 
-['share-btn', 'share-btn-2'].forEach((id) => {
+['share-btn-desktop', 'share-btn-mobile', 'share-btn-2'].forEach((id) => {
   const btn = document.getElementById(id);
   if (btn) {
     btn.addEventListener('click', (e) => {

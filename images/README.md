@@ -1,9 +1,10 @@
-# Image files needed
+# Image files
 
-Add these three photos to this folder with these exact filenames, and they'll show up on the site automatically:
+- `hero-banner.png` — the hero banner graphic. On desktop it's shown as-is (cropped just
+  above its own button row, since real buttons are placed below it). On mobile, the same
+  file is used as a cropped background photo with real HTML text on top, since the text
+  baked into the graphic becomes too small to read on narrow screens.
+- `polaroids.png` — the combined Polaroid photo graphic used in Antonio's Story section.
 
-- `hero-antonio.jpg` — the photo used behind the hero banner (top of the homepage)
-- `antonio-polaroid-1.jpg` — the first Polaroid photo (labeled "Antonio")
-- `antonio-polaroid-2.jpg` — the second Polaroid photo
-
-Recommended size: at least 1200px wide so they look sharp on large screens.
+To update either photo, just replace the file with a new one using the same filename —
+no code changes needed.
