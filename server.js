@@ -5,6 +5,8 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 const COORDINATOR_EMAIL = process.env.DONOR_COORDINATOR_EMAIL || 'Chesley.bishop@Prismahealth.org';
+// Gets a copy of every website notification (form submissions, etc.) alongside the coordinator.
+const NOTIFY_EMAIL = process.env.SITE_NOTIFY_EMAIL || 'Kidney4Tee2@gmail.com';
 const BREVO_API_KEY = process.env.BREVO_API_KEY;
 const FROM_EMAIL = process.env.FROM_EMAIL || 'Pleasedonate@kidneyforantonio.com';
 const FROM_NAME = process.env.FROM_NAME || 'Kidney For Antonio';
@@ -15,7 +17,7 @@ if (!emailConfigured) {
   console.warn('Email is not configured — set BREVO_API_KEY to enable the donor questionnaire.');
 }
 
-async function sendEmail({ to, subject, html, replyTo }) {
+async function sendEmail({ to, bcc, subject, html, replyTo }) {
   const response = await fetch('https://api.brevo.com/v3/smtp/email', {
     method: 'POST',
     headers: {
@@ -26,6 +28,7 @@ async function sendEmail({ to, subject, html, replyTo }) {
     body: JSON.stringify({
       sender: { name: FROM_NAME, email: FROM_EMAIL },
       to: [{ email: to }],
+      ...(bcc ? { bcc: [{ email: bcc }] } : {}),
       ...(replyTo ? { replyTo: { email: replyTo } } : {}),
       subject,
       htmlContent: html,
@@ -201,6 +204,7 @@ app.post('/api/donor-questionnaire', async (req, res) => {
 
     await sendEmail({
       to: COORDINATOR_EMAIL,
+      bcc: NOTIFY_EMAIL,
       replyTo: data.email || undefined,
       subject: `Living Donor Questionnaire — ${data.fullName}`,
       html,
