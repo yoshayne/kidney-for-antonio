@@ -6,12 +6,13 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 const COORDINATOR_EMAIL = process.env.DONOR_COORDINATOR_EMAIL || 'Chesley.bishop@Prismahealth.org';
-const SMTP_HOST = process.env.SMTP_HOST || 'smtp.gmail.com';
-const SMTP_PORT = Number(process.env.SMTP_PORT || 465);
+const SMTP_HOST = process.env.SMTP_HOST || 'smtp-relay.brevo.com';
+const SMTP_PORT = Number(process.env.SMTP_PORT || 587);
 const SMTP_USER = process.env.SMTP_USER;
-const SMTP_APP_PASSWORD = process.env.SMTP_APP_PASSWORD;
+const SMTP_PASSWORD = process.env.SMTP_PASSWORD;
+const FROM_EMAIL = process.env.FROM_EMAIL || SMTP_USER;
 
-const emailConfigured = Boolean(SMTP_USER && SMTP_APP_PASSWORD);
+const emailConfigured = Boolean(SMTP_USER && SMTP_PASSWORD);
 
 let transporter = null;
 if (emailConfigured) {
@@ -19,10 +20,10 @@ if (emailConfigured) {
     host: SMTP_HOST,
     port: SMTP_PORT,
     secure: SMTP_PORT === 465,
-    auth: { user: SMTP_USER, pass: SMTP_APP_PASSWORD },
+    auth: { user: SMTP_USER, pass: SMTP_PASSWORD },
   });
 } else {
-  console.warn('Email is not configured — set SMTP_USER and SMTP_APP_PASSWORD to enable the donor questionnaire.');
+  console.warn('Email is not configured — set SMTP_USER and SMTP_PASSWORD (your Brevo SMTP login and key) to enable the donor questionnaire.');
 }
 
 app.use(express.json({ limit: '256kb' }));
@@ -187,7 +188,7 @@ app.post('/api/donor-questionnaire', async (req, res) => {
     const html = buildEmailHtml(data);
 
     await transporter.sendMail({
-      from: `"Kidney For Antonio Website" <${SMTP_USER}>`,
+      from: `"Kidney For Antonio Website" <${FROM_EMAIL}>`,
       to: COORDINATOR_EMAIL,
       replyTo: data.email || undefined,
       subject: `Living Donor Questionnaire — ${data.fullName}`,
@@ -196,7 +197,7 @@ app.post('/api/donor-questionnaire', async (req, res) => {
 
     if (data.email) {
       await transporter.sendMail({
-        from: `"Kidney For Antonio" <${SMTP_USER}>`,
+        from: `"Kidney For Antonio" <${FROM_EMAIL}>`,
         to: data.email,
         subject: 'Your Living Donor Questionnaire submission',
         html: `<p>Thank you for completing the Living Donor Questionnaire for Antonio. Your answers were sent directly to Prisma Health's Living Donor Coordinator, who will reach out to you.</p>
