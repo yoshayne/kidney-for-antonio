@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Living Donor Questionnaire | Kidney For Antonio</title>
+  <meta name="description" content="Fill out the Living Donor Questionnaire online. Your answers go directly to Prisma Health's Living Donor Coordinator.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Dancing+Script:wght@600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Header / Nav -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <svg class="logo-icon" viewBox="0 0 64 64" width="40" height="40" aria-hidden="true">
+          <path d="M32 12 C24 4, 8 8, 8 22 C8 34, 20 42, 32 52 C32 38, 32 12, 32 12 Z" fill="#2F8058"/>
+          <path d="M32 12 C40 4, 56 8, 56 22 C56 34, 44 42, 32 52 C32 38, 32 12, 32 12 Z" fill="#3FA06E"/>
+        </svg>
+        <span class="logo-text">
+          <span class="logo-title">Kidney<br>For Antonio</span>
+          <span class="logo-tagline">A MOM'S HOPE. A BRIGHTER TOMORROW.</span>
+        </span>
+      </a>
+
+      <nav class="main-nav" id="main-nav">
+        <a href="index.html">Home</a>
+        <a href="index.html#story">Antonio's Story</a>
+        <a href="index.html#donor">Be a Donor</a>
+        <a href="index.html#support">Support</a>
+        <a href="index.html#resources">Resources</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+
+      <a href="index.html#support" class="btn btn-solid header-cta">
+        <svg class="icon" viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M12 21s-6.7-4.35-9.3-8.1C1 10.3 1.4 6.9 4.1 5.1 6.4 3.6 9.2 4.2 12 7c2.8-2.8 5.6-3.4 7.9-1.9 2.7 1.8 3.1 5.2 1.4 7.8C18.7 16.65 12 21 12 21z"/></svg>
+        Donate Now
+      </a>
+
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Form intro -->
+  <section class="form-hero">
+    <div class="container">
+      <p class="eyebrow eyebrow-light">Could You Be Antonio's Match?</p>
+      <h1 class="form-hero-title">Living Donor Questionnaire</h1>
+      <p class="form-hero-text">
+        Fill this out online instead of printing a PDF. When you submit, your answers go directly by email
+        to Prisma Health's Living Donor Coordinator &mdash; nothing is stored on this website. A copy of your
+        answers is also emailed back to you for your records.
+      </p>
+      <p class="form-hero-text">
+        Prefer paper? <a href="assets/forms/living-donor-questionnaire.pdf" download>Download the blank PDF instead</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="form-section">
+    <div class="container">
+      <form id="donor-form" novalidate>
+
+        <!-- Honeypot field — hidden from real visitors, bots often fill every field -->
+        <div class="honeypot" aria-hidden="true">
+          <label for="website">Leave this field blank</label>
+          <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+        </div>
+
+        <div class="card form-card">
+          <h2>Your Information</h2>
+          <div class="form-grid">
+            <label class="field">Full Name <span class="req">*</span>
+              <input type="text" name="fullName" required>
+            </label>
+            <label class="field">Date of Birth <span class="req">*</span>
+              <input type="date" name="dob" required>
+            </label>
+            <label class="field field-wide">Address
+              <input type="text" name="address">
+            </label>
+            <label class="field">City
+              <input type="text" name="city">
+            </label>
+            <label class="field">State
+              <input type="text" name="state" maxlength="2" placeholder="SC">
+            </label>
+            <label class="field">Zip
+              <input type="text" name="zip" inputmode="numeric">
+            </label>
+            <label class="field">Phone Number
+              <input type="tel" name="phone">
+            </label>
+            <label class="field">Email
+              <input type="email" name="email">
+            </label>
+
+            <div class="field field-wide">
+              <span class="field-label">Social Security Number</span>
+              <div class="ssn-group">
+                <input type="text" name="ssn1" maxlength="3" inputmode="numeric" placeholder="123" aria-label="SSN first three digits">
+                <span>-</span>
+                <input type="text" name="ssn2" maxlength="2" inputmode="numeric" placeholder="45" aria-label="SSN middle two digits">
+                <span>-</span>
+                <input type="text" name="ssn3" maxlength="4" inputmode="numeric" placeholder="6789" aria-label="SSN last four digits">
+              </div>
+              <span class="field-hint">Sent by email directly to the Living Donor Coordinator, the same as the paper form.</span>
+            </div>
+
+            <div class="field">
+              <span class="field-label">Gender</span>
+              <div class="radio-row">
+                <label><input type="radio" name="gender" value="Male"> Male</label>
+                <label><input type="radio" name="gender" value="Female"> Female</label>
+              </div>
+            </div>
+            <label class="field">Race
+              <input type="text" name="race">
+            </label>
+
+            <div class="field">
+              <span class="field-label">Preferred Contact</span>
+              <div class="radio-row">
+                <label><input type="radio" name="preferredContact" value="Email"> Email</label>
+                <label><input type="radio" name="preferredContact" value="Phone"> Phone</label>
+              </div>
+            </div>
+            <label class="field">Prisma MRN (if known)
+              <input type="text" name="prismaMrn">
+            </label>
+
+            <div class="field field-wide">
+              <span class="field-label">Do you currently have health insurance?</span>
+              <div class="radio-row">
+                <label><input type="radio" name="hasInsurance" value="yes"> Yes</label>
+                <label><input type="radio" name="hasInsurance" value="no"> No</label>
+              </div>
+            </div>
+
+            <label class="field field-wide">Primary Care Physician
+              <input type="text" name="pcpName">
+            </label>
+            <label class="field field-wide">Primary Care Physician Address &amp; Phone Number
+              <textarea name="pcpAddressPhone" rows="2"></textarea>
+            </label>
+          </div>
+        </div>
+
+        <div class="card form-card">
+          <h2>Recipient Information</h2>
+          <div class="form-grid">
+            <label class="field">Transplant Recipient's Name
+              <input type="text" name="recipientName">
+            </label>
+            <label class="field">Recipient Date of Birth
+              <input type="date" name="recipientDob">
+            </label>
+
+            <div class="field field-wide">
+              <label class="checkbox-row">
+                <input type="checkbox" name="noSpecificPerson" id="noSpecificPerson">
+                I do not have a specific person in mind
+              </label>
+            </div>
+
+            <div class="field">
+              <span class="field-label">Have you met the intended recipient?</span>
+              <div class="radio-row">
+                <label><input type="radio" name="metRecipient" value="yes"> Yes</label>
+                <label><input type="radio" name="metRecipient" value="no"> No</label>
+              </div>
+            </div>
+            <div class="field">
+              <span class="field-label">Does your recipient know you are considering donation?</span>
+              <div class="radio-row">
+                <label><input type="radio" name="recipientKnows" value="yes"> Yes</label>
+                <label><input type="radio" name="recipientKnows" value="no"> No</label>
+              </div>
+            </div>
+
+            <div class="field field-wide">
+              <span class="field-label">What is your relationship to the recipient?</span>
+              <div class="radio-row radio-row-wrap">
+                <label><input type="radio" name="relationship" value="family"> Family</label>
+                <label><input type="radio" name="relationship" value="friend"> Friend</label>
+                <label><input type="radio" name="relationship" value="co-worker"> Co-worker</label>
+                <label><input type="radio" name="relationship" value="none"> None</label>
+                <label><input type="radio" name="relationship" value="other"> Other</label>
+              </div>
+              <input type="text" name="relationshipDetail" placeholder="If family, what relationship?" class="field-followup">
+              <input type="text" name="relationshipOther" placeholder="If other, please describe" class="field-followup">
+            </div>
+          </div>
+        </div>
+
+        <div class="card form-card">
+          <h2>Health History</h2>
+          <div class="form-grid">
+            <label class="field">Height
+              <input type="text" name="height" placeholder="e.g. 5'8&quot;">
+            </label>
+            <label class="field">Weight
+              <input type="text" name="weight">
+            </label>
+            <div class="field">
+              <span class="field-label">Weight Unit</span>
+              <div class="radio-row">
+                <label><input type="radio" name="weightUnit" value="lbs" checked> lbs</label>
+                <label><input type="radio" name="weightUnit" value="kg"> kg</label>
+              </div>
+            </div>
+            <label class="field">Blood Type
+              <input type="text" name="bloodType" placeholder="e.g. O+">
+            </label>
+          </div>
+
+          <div class="yn-list">
+            <div class="yn-row">
+              <span>Have you ever been told you have high blood pressure?</span>
+              <div class="radio-row"><label><input type="radio" name="highBloodPressure" value="yes"> Yes</label><label><input type="radio" name="highBloodPressure" value="no"> No</label></div>
+            </div>
+            <div class="yn-row">
+              <span>Have you ever been told you have diabetes?</span>
+              <div class="radio-row"><label><input type="radio" name="diabetes" value="yes"> Yes</label><label><input type="radio" name="diabetes" value="no"> No</label></div>
+            </div>
+            <div class="yn-row yn-followup">
+              <span>How many, if any, family members are diabetic?</span>
+              <input type="text" name="diabeticFamilyCount">
+            </div>
+            <div class="yn-row">
+              <span>Have you ever been told you have arthritis?</span>
+              <div class="radio-row"><label><input type="radio" name="arthritis" value="yes"> Yes</label><label><input type="radio" name="arthritis" value="no"> No</label></div>
+            </div>
+            <div class="yn-row">
+              <span>Have you ever been told you have lupus?</span>
+              <div class="radio-row"><label><input type="radio" name="lupus" value="yes"> Yes</label><label><input type="radio" name="lupus" value="no"> No</label></div>
+            </div>
+            <div class="yn-row">
+              <span>If female, have you ever been pregnant?</span>
+              <div class="radio-row"><label><input type="radio" name="everPregnant" value="yes"> Yes</label><label><input type="radio" name="everPregnant" value="no"> No</label></div>
+            </div>
+            <div class="yn-row yn-followup">
+              <span>How many pregnancies?</span>
+              <input type="text" name="numPregnancies">
+            </div>
+            <div class="yn-row">
+              <span>Any gestational diabetes or pre-eclampsia?</span>
+              <div class="radio-row"><label><input type="radio" name="gestationalIssues" value="yes"> Yes</label><label><input type="radio" name="gestationalIssues" value="no"> No</label></div>
+            </div>
+            <div class="yn-row">
+              <span>Have you ever been told you have kidney problems?</span>
+              <div class="radio-row"><label><input type="radio" name="kidneyProblems" value="yes"> Yes</label><label><input type="radio" name="kidneyProblems" value="no"> No</label></div>
+            </div>
+            <div class="yn-row">
+              <span>Have you ever had a kidney stone?</span>
+              <div class="radio-row"><label><input type="radio" name="kidneyStone" value="yes"> Yes</label><label><input type="radio" name="kidneyStone" value="no"> No</label></div>
+            </div>
+            <div class="yn-row">
+              <span>Have you had a heart attack in the past?</span>
+              <div class="radio-row"><label><input type="radio" name="heartAttack" value="yes"> Yes</label><label><input type="radio" name="heartAttack" value="no"> No</label></div>
+            </div>
+            <div class="yn-row">
+              <span>Have you ever had heart surgery or stents?</span>
+              <div class="radio-row"><label><input type="radio" name="heartSurgeryStents" value="yes"> Yes</label><label><input type="radio" name="heartSurgeryStents" value="no"> No</label></div>
+            </div>
+            <div class="yn-row">
+              <span>Have you ever been told that you had cancer?</span>
+              <div class="radio-row"><label><input type="radio" name="cancer" value="yes"> Yes</label><label><input type="radio" name="cancer" value="no"> No</label></div>
+            </div>
+            <div class="yn-row yn-followup">
+              <span>Type of cancer/treatment:</span>
+              <input type="text" name="cancerDetail">
+            </div>
+            <div class="yn-row">
+              <span>Have you had any abdominal surgeries in the past?</span>
+              <div class="radio-row"><label><input type="radio" name="abdominalSurgery" value="yes"> Yes</label><label><input type="radio" name="abdominalSurgery" value="no"> No</label></div>
+            </div>
+            <div class="yn-row yn-followup">
+              <span>If so, what type of surgery?</span>
+              <input type="text" name="abdominalSurgeryDetail">
+            </div>
+            <div class="yn-row">
+              <span>Have you ever been hospitalized for a psychiatric condition?</span>
+              <div class="radio-row"><label><input type="radio" name="psychHospitalization" value="yes"> Yes</label><label><input type="radio" name="psychHospitalization" value="no"> No</label></div>
+            </div>
+            <div class="yn-row">
+              <span>Have you ever attempted to harm yourself or others?</span>
+              <div class="radio-row"><label><input type="radio" name="selfHarmAttempt" value="yes"> Yes</label><label><input type="radio" name="selfHarmAttempt" value="no"> No</label></div>
+            </div>
+            <div class="yn-row">
+              <span>Do you currently use tobacco products?</span>
+              <div class="radio-row"><label><input type="radio" name="tobaccoUse" value="yes"> Yes</label><label><input type="radio" name="tobaccoUse" value="no"> No</label></div>
+            </div>
+            <div class="yn-row yn-followup">
+              <span>If former smoker, for how many years and how much?</span>
+              <input type="text" name="formerSmokerDetail">
+            </div>
+            <div class="yn-row">
+              <span>Do you drink alcohol?</span>
+              <div class="radio-row"><label><input type="radio" name="alcoholUse" value="yes"> Yes</label><label><input type="radio" name="alcoholUse" value="no"> No</label></div>
+            </div>
+            <div class="yn-row yn-followup">
+              <span>If so, how much and how often?</span>
+              <input type="text" name="alcoholDetail">
+            </div>
+            <div class="yn-row">
+              <span>In the past year, have you used any recreational or illegal drugs?</span>
+              <div class="radio-row"><label><input type="radio" name="recreationalDrugs" value="yes"> Yes</label><label><input type="radio" name="recreationalDrugs" value="no"> No</label></div>
+            </div>
+            <div class="yn-row">
+              <span>Or used a prescription medication for a non-medical purpose?</span>
+              <div class="radio-row"><label><input type="radio" name="prescriptionMisuse" value="yes"> Yes</label><label><input type="radio" name="prescriptionMisuse" value="no"> No</label></div>
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <label class="field">Mammogram (date)
+              <input type="text" name="mammogram">
+            </label>
+            <label class="field">Pap Smear (date)
+              <input type="text" name="papSmear">
+            </label>
+            <label class="field">Colonoscopy (date)
+              <input type="text" name="colonoscopy">
+            </label>
+            <label class="field">PSA (date)
+              <input type="text" name="psa">
+            </label>
+            <label class="field field-wide">Are you willing to accept blood products?
+              <input type="text" name="bloodProducts">
+            </label>
+            <label class="field field-wide">Are there any other health problems you think we should be aware of?
+              <textarea name="otherHealthConcerns" rows="3"></textarea>
+            </label>
+          </div>
+        </div>
+
+        <div class="card form-card">
+          <h2>Medications</h2>
+          <p class="field-hint">Include over-the-counter medications, supplements, and herbs.</p>
+          <div id="medications-rows" class="medications-rows">
+            <div class="medication-row">
+              <input type="text" name="medication" placeholder="Medication">
+              <input type="text" name="dose" placeholder="Dose">
+              <input type="text" name="frequency" placeholder="Frequency">
+            </div>
+          </div>
+          <button type="button" id="add-medication" class="btn btn-outline btn-sm">+ Add another medication</button>
+        </div>
+
+        <div class="card form-card">
+          <h2>Signature</h2>
+          <div class="form-grid">
+            <label class="field">Type your full legal name as your signature <span class="req">*</span>
+              <input type="text" name="signatureName" required>
+            </label>
+            <label class="field">Date <span class="req">*</span>
+              <input type="date" name="signatureDate" required>
+            </label>
+          </div>
+          <label class="checkbox-row certify-row">
+            <input type="checkbox" name="agreeCertify" required>
+            I certify that the information above is true and accurate to the best of my knowledge.
+          </label>
+        </div>
+
+        <div id="form-status" class="form-status" role="status" aria-live="polite"></div>
+
+        <button type="submit" id="submit-btn" class="btn btn-solid btn-lg btn-block">
+          Send My Questionnaire to the Donor Coordinator
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p class="footer-script">Hope Changes Lives.</p>
+      <p class="footer-tagline">A Healthier Tomorrow Is Possible.</p>
+
+      <nav class="footer-nav">
+        <a href="index.html">Home</a>
+        <a href="index.html#story">Antonio's Story</a>
+        <a href="index.html#donor">Be a Donor</a>
+        <a href="index.html#support">Support</a>
+        <a href="index.html#resources">Resources</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+
+      <div class="footer-bottom">
+        <span>Together, we can make a difference.</span>
+        <span>&#9825;</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/questionnaire.js"></script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "name": "kidney-for-antonio",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Kidney For Antonio campaign site",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^5.2.1",
+    "nodemailer": "^10.0.9"
+  }
+}
